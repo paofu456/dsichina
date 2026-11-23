@@ -3,11 +3,10 @@ export const siteConfig = {
   locale: "en_US",
   siteUrl: undefined as string | undefined,
   siteMode: "local" as "local" | "production",
-  contentStatus: "demo" as "demo" | "draft" | "ready",
+  contentStatus: "draft" as "demo" | "draft" | "ready",
   navigation: [
     { label: "Home", href: "/" },
-    { label: "About", href: "/about/" },
-    { label: "Products", href: "/products/" },
+    { label: "DX Series", href: "/products/dx-series/" },
     { label: "Contact", href: "/contact/" },
   ],
 };

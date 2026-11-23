@@ -7,30 +7,29 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="bg-[var(--color-ink)] text-white">
-  <Container class="grid gap-12 py-16 md:grid-cols-[1.6fr_1fr_1fr]">
+  <Container class="grid gap-14 py-16 md:grid-cols-[1.5fr_.7fr_1.1fr] lg:gap-20 lg:py-20">
     <div>
-      <img src={company.logo} alt={`${company.name} logo`} width="212" height="48" class="h-11 w-auto rounded bg-white p-1.5" />
-      <p class="mt-6 max-w-md text-sm leading-7 text-white/65">{company.description}</p>
+      <img src={company.logo} alt={`${company.shortName} logo`} width="198" height="48" class="h-11 w-auto bg-white px-2 py-1.5" />
+      <p class="mt-7 max-w-md text-sm leading-7 text-white/58">{company.description}</p>
     </div>
     <div>
-      <h2 class="text-sm font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">Explore</h2>
-      <ul class="mt-5 space-y-3 text-sm text-white/75">
-        {siteConfig.navigation.map((item) => <li><a class="hover:text-white" href={item.href}>{item.label}</a></li>)}
+      <h2 class="text-[0.68rem] font-bold uppercase tracking-[0.2em] text-[var(--color-accent)]">Navigate</h2>
+      <ul class="mt-5 space-y-3 text-sm text-white/70">
+        {siteConfig.navigation.map((item) => <li><a class="transition-colors hover:text-white" href={item.href}>{item.label}</a></li>)}
       </ul>
     </div>
     <div>
-      <h2 class="text-sm font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">Contact</h2>
-      <ul class="mt-5 space-y-3 text-sm text-white/75">
-        <li><a class="hover:text-white" href={`mailto:${company.email}`}>{company.email}</a></li>
-        <li><a class="hover:text-white" href={`tel:${company.phone.replace(/\s/g, "")}`}>{company.phone}</a></li>
-        <li>{company.location}</li>
+      <h2 class="text-[0.68rem] font-bold uppercase tracking-[0.2em] text-[var(--color-accent)]">Laser projection division</h2>
+      <ul class="mt-5 space-y-4 text-sm text-white/70">
+        <li><a class="spec-value text-lg font-semibold text-white transition-colors hover:text-[var(--color-accent)]" href={`tel:+86${company.phone.replace(/[^0-9]/g, "").replace(/^0/, "")}`}>{company.phone}</a></li>
+        <li class="max-w-xs leading-6">{company.address}</li>
       </ul>
     </div>
   </Container>
   <div class="border-t border-white/10">
-    <Container class="flex flex-col gap-2 py-6 text-xs text-white/50 sm:flex-row sm:justify-between">
-      <p>© {year} {company.name}. All rights reserved.</p>
-      <p>Static website starter · Demo content</p>
+    <Container class="flex flex-col gap-2 py-6 text-[0.68rem] uppercase tracking-[0.12em] text-white/38 sm:flex-row sm:justify-between">
+      <p>© {year} {company.name}</p>
+      <p>Laser projection · Interactive display</p>
     </Container>
   </div>
 </footer>

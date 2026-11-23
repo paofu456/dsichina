@@ -1,16 +1,11 @@
 {
-  "name": "Northstar Industrial",
-  "shortName": "Northstar",
-  "tagline": "Components engineered for demanding production lines",
-  "description": "Northstar Industrial is demonstration content for this starter. Replace every company fact with confirmed customer information before delivery.",
-  "founded": "Demo content",
-  "location": "Demo location",
-  "email": "hello@example.com",
-  "phone": "+00 000 000 000",
-  "whatsapp": "+00 000 000 000",
-  "address": "Demo address — replace before delivery",
-  "logo": "/media/company/logo.svg",
-  "social": {
-    "linkedin": ""
-  }
+  "name": "ShenZhen DUALSHINE INDUSTRY CO.,LTD",
+  "shortName": "DUALSHINE",
+  "tagline": "Laser projection and interactive display systems",
+  "description": "DUALSHINE designs and manufactures laser projectors and interactive display systems for education, business and large-venue applications.",
+  "founded": "2017",
+  "location": "Shenzhen, China",
+  "phone": "0755-23305147",
+  "address": "23/F, DUALSHINE Global Innovation Center, Liufang No. 2, Bao'an District, Shenzhen, China",
+  "logo": "/media/company/dualshine-logo.jpg"
 }

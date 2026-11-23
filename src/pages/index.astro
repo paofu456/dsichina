@@ -1,20 +1,22 @@
 ---
-import CompanyIntro from "../components/sections/CompanyIntro.astro";
+import Applications from "../components/sections/Applications.astro";
 import ContactCta from "../components/sections/ContactCta.astro";
-import FeaturedProducts from "../components/sections/FeaturedProducts.astro";
+import DxSpecBand from "../components/sections/DxSpecBand.astro";
 import Hero from "../components/sections/Hero.astro";
-import company from "../data/company.json";
+import Manufacturing from "../components/sections/Manufacturing.astro";
+import ProductRange from "../components/sections/ProductRange.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { makePageTitle } from "../lib/seo";
 ---
 
 <BaseLayout
   title={makePageTitle()}
-  description={`${company.name} presents confirmed company capabilities and product information in a fast, accessible static website.`}
-  image="/media/company/factory.svg"
+  description="DUALSHINE manufactures laser projectors and interactive display systems for education, business and large-venue applications."
 >
   <Hero />
-  <CompanyIntro />
-  <FeaturedProducts />
+  <ProductRange />
+  <DxSpecBand />
+  <Applications />
+  <Manufacturing />
   <ContactCta />
 </BaseLayout>

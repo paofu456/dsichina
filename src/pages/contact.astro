@@ -4,47 +4,66 @@ import company from "../data/company.json";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { makePageTitle } from "../lib/seo";
 
-const phoneHref = company.phone.replace(/\s/g, "");
-const whatsappHref = company.whatsapp.replace(/[^\d+]/g, "");
+const phoneHref = `tel:+86${company.phone.replace(/[^0-9]/g, "").replace(/^0/, "")}`;
 ---
 
 <BaseLayout
   title={makePageTitle("Contact")}
-  description={`Contact ${company.name} using its confirmed email, telephone, WhatsApp, and business address details.`}
+  description="Contact the DUALSHINE laser projection division by telephone or visit the company office in Bao'an District, Shenzhen."
 >
-  <section class="relative overflow-hidden bg-[var(--color-ink)] py-20 text-white sm:py-28">
-    <div class="absolute inset-0 opacity-25" aria-hidden="true" style="background-image: radial-gradient(circle at 85% 30%, #43a48f 0, transparent 32%);"></div>
-    <Container class="relative">
-      <p class="mb-5 text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--color-accent)]">Contact</p>
-      <h1 class="max-w-4xl text-5xl font-extrabold leading-[1.05] sm:text-7xl">Start with a direct, working contact channel.</h1>
-      <p class="mt-7 max-w-2xl text-xl leading-9 text-white/65">This starter links to real communication tools instead of presenting a form that does not send anywhere.</p>
+  <section class="bg-[var(--color-ink)] py-16 text-white sm:py-20 lg:py-24">
+    <Container class="grid gap-12 lg:grid-cols-[1.1fr_.9fr] lg:items-end lg:gap-20">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h1 class="display-xl mt-5 max-w-[12ch]">Talk directly to the projection team.</h1>
+        <p class="mt-7 max-w-xl text-lg leading-8 text-white/62">
+          For product selection, project planning and technical questions about the DX Series, contact the laser projection division.
+        </p>
+      </div>
+      <div class="lg:justify-self-end">
+        <p class="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-white/38">Telephone</p>
+        <a href={phoneHref} class="spec-value mt-2 block text-4xl font-semibold tracking-[-0.04em] text-white transition-colors hover:text-[var(--color-accent)] sm:text-5xl lg:text-6xl">{company.phone}</a>
+      </div>
     </Container>
   </section>
 
-  <section class="py-24 sm:py-32">
-    <Container class="grid gap-6 lg:grid-cols-3">
-      <a href={`mailto:${company.email}`} class="rounded-[var(--radius-card)] border border-[var(--color-line)] bg-white p-8 transition hover:-translate-y-1 hover:shadow-[var(--shadow-card)]">
-        <p class="eyebrow">Email</p>
-        <h2 class="mt-4 text-2xl font-extrabold">Send an email</h2>
-        <p class="mt-3 break-all text-[var(--color-muted)]">{company.email}</p>
-      </a>
-      <a href={`tel:${phoneHref}`} class="rounded-[var(--radius-card)] border border-[var(--color-line)] bg-white p-8 transition hover:-translate-y-1 hover:shadow-[var(--shadow-card)]">
-        <p class="eyebrow">Telephone</p>
-        <h2 class="mt-4 text-2xl font-extrabold">Call our team</h2>
-        <p class="mt-3 text-[var(--color-muted)]">{company.phone}</p>
-      </a>
-      <a href={`https://wa.me/${whatsappHref.replace("+", "")}`} class="rounded-[var(--radius-card)] border border-[var(--color-line)] bg-white p-8 transition hover:-translate-y-1 hover:shadow-[var(--shadow-card)]">
-        <p class="eyebrow">WhatsApp</p>
-        <h2 class="mt-4 text-2xl font-extrabold">Message us</h2>
-        <p class="mt-3 text-[var(--color-muted)]">{company.whatsapp}</p>
-      </a>
+  <section class="border-t border-white/10 bg-[var(--color-primary)] text-white">
+    <Container class="grid gap-px bg-white/20 md:grid-cols-2">
+      <div class="bg-[var(--color-primary)] py-12 pr-6 sm:py-14 md:pr-12 lg:pr-20">
+        <p class="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-white/60">Call the laser projection division</p>
+        <a href={phoneHref} class="spec-value mt-4 block text-3xl font-semibold tracking-[-0.03em] transition-opacity hover:opacity-75 sm:text-4xl">{company.phone}</a>
+        <p class="mt-4 max-w-sm text-sm leading-6 text-white/75">Please have the room dimensions, intended screen size and application ready for a more productive first call.</p>
+      </div>
+      <div class="bg-[var(--color-primary)] py-12 pl-6 sm:py-14 md:pl-12 lg:pl-20">
+        <p class="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-white/60">Office</p>
+        <address class="mt-4 max-w-md text-xl font-semibold not-italic leading-8 sm:text-2xl">{company.address}</address>
+        <p class="mt-4 text-sm leading-6 text-white/75">Shenzhen, China</p>
+      </div>
     </Container>
+  </section>
 
-    <Container class="mt-10">
-      <div class="rounded-[var(--radius-card)] bg-[var(--color-primary)] p-8 text-white sm:p-12">
-        <p class="text-xs font-extrabold uppercase tracking-[0.16em] text-[var(--color-accent)]">Business address</p>
-        <h2 class="mt-4 text-3xl font-extrabold">{company.location}</h2>
-        <p class="mt-3 max-w-2xl text-lg text-white/70">{company.address}</p>
+  <section class="bg-[var(--color-surface)] py-20 sm:py-24 lg:py-28">
+    <Container class="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+      <div>
+        <p class="eyebrow">Project planning</p>
+        <h2 class="display-lg mt-5 max-w-[12ch]">A better first conversation.</h2>
+      </div>
+      <div class="border-t border-[var(--color-ink)]/20">
+        <div class="grid gap-3 border-b border-[var(--color-line)] py-6 sm:grid-cols-[2.5rem_1fr_1.3fr] sm:items-start">
+          <p class="spec-value text-[0.62rem] font-bold tracking-[0.14em] text-[var(--color-primary)]">01</p>
+          <h3 class="text-lg font-bold">The room</h3>
+          <p class="max-w-sm text-sm leading-7 text-[var(--color-muted)]">Room dimensions, seating layout and the amount of ambient light.</p>
+        </div>
+        <div class="grid gap-3 border-b border-[var(--color-line)] py-6 sm:grid-cols-[2.5rem_1fr_1.3fr] sm:items-start">
+          <p class="spec-value text-[0.62rem] font-bold tracking-[0.14em] text-[var(--color-primary)]">02</p>
+          <h3 class="text-lg font-bold">The screen</h3>
+          <p class="max-w-sm text-sm leading-7 text-[var(--color-muted)]">Intended image size, aspect ratio and mounting position.</p>
+        </div>
+        <div class="grid gap-3 border-b border-[var(--color-line)] py-6 sm:grid-cols-[2.5rem_1fr_1.3fr] sm:items-start">
+          <p class="spec-value text-[0.62rem] font-bold tracking-[0.14em] text-[var(--color-primary)]">03</p>
+          <h3 class="text-lg font-bold">The application</h3>
+          <p class="max-w-sm text-sm leading-7 text-[var(--color-muted)]">Teaching, presentation, stage or large-screen projection.</p>
+        </div>
       </div>
     </Container>
   </section>

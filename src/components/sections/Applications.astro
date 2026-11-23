@@ -1,0 +1,48 @@
+---
+import Container from "../ui/Container.astro";
+
+const applications = [
+  {
+    index: "01",
+    title: "Education",
+    copy: "Laser projection for school lecture theatres, with interactive display systems for teaching environments.",
+  },
+  {
+    index: "02",
+    title: "Business",
+    copy: "Presentation platforms for large meeting rooms and corporate spaces that need a clear, lasting image.",
+  },
+  {
+    index: "03",
+    title: "Stage & venue",
+    copy: "Projection for stage environments where brightness, resolution and dependable operation come first.",
+  },
+  {
+    index: "04",
+    title: "Large-screen",
+    copy: "Front-projection solutions for exhibition and blended display, including multi-projector configurations.",
+  },
+];
+---
+
+<section class="border-t border-[var(--color-line)] bg-[var(--color-surface)] py-20 sm:py-24 lg:py-28">
+  <Container class="grid gap-14 lg:grid-cols-[.85fr_1.15fr] lg:gap-20">
+    <div>
+      <p class="eyebrow">Applications</p>
+      <h2 class="display-lg mt-5 max-w-[11ch]">Made for the rooms where the image matters.</h2>
+      <p class="mt-7 max-w-sm text-base leading-7 text-[var(--color-muted)]">
+        From a single lecture theatre to a blended large-screen installation, the range is organised around the way the space is used.
+      </p>
+    </div>
+
+    <div class="border-t border-[var(--color-ink)]/20">
+      {applications.map((item) => (
+        <article class="grid gap-4 border-b border-[var(--color-line)] py-7 sm:grid-cols-[3rem_1fr_1.4fr] sm:items-start lg:py-8">
+          <p class="spec-value text-[0.66rem] font-bold tracking-[0.14em] text-[var(--color-primary)]">{item.index}</p>
+          <h3 class="text-xl font-bold tracking-[-0.02em]">{item.title}</h3>
+          <p class="max-w-md text-sm leading-7 text-[var(--color-muted)]">{item.copy}</p>
+        </article>
+      ))}
+    </div>
+  </Container>
+</section>

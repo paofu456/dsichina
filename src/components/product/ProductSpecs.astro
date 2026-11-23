@@ -11,16 +11,11 @@ interface Props {
 const { specifications } = Astro.props;
 ---
 
-{specifications.length > 0 && (
-  <div class="overflow-hidden rounded-[var(--radius-card)] border border-[var(--color-line)] bg-white">
-    <h2 class="border-b border-[var(--color-line)] px-6 py-5 text-xl font-extrabold">Specifications</h2>
-    <dl>
-      {specifications.map((specification, index) => (
-        <div class:list={["grid gap-1 px-6 py-4 sm:grid-cols-2", index > 0 && "border-t border-[var(--color-line)]"]}>
-          <dt class="text-sm font-bold text-[var(--color-ink)]">{specification.label}</dt>
-          <dd class="text-sm text-[var(--color-muted)]">{specification.value}</dd>
-        </div>
-      ))}
-    </dl>
-  </div>
-)}
+<dl class="grid border-t border-[var(--color-ink)]/20 sm:grid-cols-2">
+  {specifications.map((specification, index) => (
+    <div class:list={["border-b border-[var(--color-line)] py-5 sm:py-6", index % 2 === 1 && "sm:border-l sm:pl-7"]}>
+      <dt class="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-[var(--color-steel)]">{specification.label}</dt>
+      <dd class="spec-value mt-2 text-lg font-semibold text-[var(--color-ink)]">{specification.value}</dd>
+    </div>
+  ))}
+</dl>

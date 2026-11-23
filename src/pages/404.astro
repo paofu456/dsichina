@@ -7,17 +7,17 @@ import { makePageTitle } from "../lib/seo";
 
 <BaseLayout
   title={makePageTitle("Page not found")}
-  description="The requested page could not be found. Return to the company website home page or browse the product catalog."
+  description="The requested page could not be found. Return to the DUALSHINE home page or contact the laser projection division."
   noindex={true}
 >
-  <section class="py-28 sm:py-40">
-    <Container class="text-center">
-      <p class="text-8xl font-extrabold text-[var(--color-primary)] sm:text-9xl">404</p>
-      <h1 class="mt-6 text-4xl font-extrabold sm:text-6xl">This page is off the production line.</h1>
-      <p class="mx-auto mt-5 max-w-xl text-lg text-[var(--color-muted)]">The URL may have changed or the page may no longer exist.</p>
-      <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+  <section class="bg-[var(--color-surface)] py-28 sm:py-40">
+    <Container class="max-w-4xl">
+      <p class="text-8xl font-bold tracking-[-0.06em] text-[var(--color-primary)] sm:text-9xl">404</p>
+      <h1 class="mt-6 text-4xl font-bold sm:text-6xl">This page is not part of the current site.</h1>
+      <p class="mt-5 max-w-xl text-lg leading-8 text-[var(--color-muted)]">The URL may have changed or the page may no longer exist.</p>
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row">
         <Button href="/">Return home</Button>
-        <Button href="/products/" variant="secondary">Browse products</Button>
+        <Button href="/contact/" variant="secondary">Contact</Button>
       </div>
     </Container>
   </section>

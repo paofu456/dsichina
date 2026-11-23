@@ -1,38 +1,60 @@
 ---
-import company from "../../data/company.json";
 import Button from "../ui/Button.astro";
 import Container from "../ui/Container.astro";
+
+const stats = [
+  { value: "5,000–6,500", unit: "lm", label: "DX series brightness" },
+  { value: "1920 × 1080", unit: "", label: "Full HD resolution" },
+  { value: "0.65-inch", unit: "DLP", label: "Single-chip optical engine" },
+  { value: "Laser", unit: "", label: "Light source" },
+];
 ---
 
-<section class="relative overflow-hidden bg-[var(--color-ink)] text-white">
-  <div class="absolute inset-0 opacity-30" aria-hidden="true" style="background-image: radial-gradient(circle at 76% 18%, #43a48f 0, transparent 32%), linear-gradient(115deg, transparent 55%, rgba(240,180,77,.18));"></div>
-  <Container class="relative grid min-h-[680px] items-center gap-14 py-20 lg:grid-cols-[1.05fr_.95fr] lg:py-24">
-    <div>
-      <p class="mb-6 inline-flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.2em] text-[var(--color-accent)]">
-        <span class="h-px w-10 bg-[var(--color-accent)]"></span>
-        Company website starter
+<section class="overflow-hidden bg-[var(--color-ink)] text-white">
+  <Container class="grid lg:grid-cols-[1.06fr_.94fr]">
+    <div class="flex max-w-3xl flex-col justify-center py-16 sm:py-20 lg:min-h-[40rem] lg:py-24 lg:pr-16">
+      <p class="eyebrow">Laser projection systems</p>
+      <h1 class="display-xl mt-6 max-w-[13ch] font-bold">Laser projection for the big room.</h1>
+      <p class="mt-7 max-w-xl text-lg leading-8 text-white/62 sm:text-xl sm:leading-9">
+        DUALSHINE develops and manufactures laser projectors and interactive display systems for education, business and large-venue applications.
       </p>
-      <h1 class="max-w-4xl text-5xl font-extrabold leading-[1.02] sm:text-6xl lg:text-7xl">{company.tagline}</h1>
-      <p class="mt-7 max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">{company.description}</p>
-      <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-        <Button href="/products/" class="bg-[var(--color-accent)] text-[var(--color-ink)] hover:bg-white">Explore products</Button>
-        <Button href="/contact/" variant="secondary" class="border-white/25 bg-white/10 text-white hover:border-white">Talk to our team</Button>
+      <div class="mt-9 flex flex-wrap items-center gap-4">
+        <Button href="/products/dx-series/" >Explore DX Series</Button>
+        <Button href="/contact/" variant="inverse">Talk to our team</Button>
       </div>
+      <p class="mt-10 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-white/38">Shenzhen, China · Established 2017</p>
     </div>
 
-    <div class="relative lg:pl-8">
-      <div class="absolute -inset-5 rounded-[2rem] border border-white/10" aria-hidden="true"></div>
+    <div class="relative flex min-h-[26rem] items-center justify-center border-t border-white/10 bg-[#d2d3d1] lg:min-h-[40rem] lg:border-l lg:border-t-0">
+      <div class="absolute left-6 top-6 z-10 flex items-center gap-3 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[var(--color-ink)]/55">
+        <span class="h-px w-8 bg-[var(--color-primary)]"></span>
+        DX Series / 001
+      </div>
       <img
-        src="/media/company/factory.svg"
-        alt="Demonstration illustration of an industrial facility"
-        width="900"
-        height="700"
-        class="relative w-full rounded-[1.75rem] shadow-2xl"
+        src="/media/products/dx-series.jpg"
+        alt="DUALSHINE DX Series black laser engineering projector"
+        width="2200"
+        height="1895"
+        fetchpriority="high"
+        class="h-full w-full object-contain px-7 py-20 sm:px-12 lg:px-16 lg:py-16"
       />
-      <div class="absolute -bottom-6 -left-3 max-w-[15rem] rounded-2xl bg-white p-5 text-[var(--color-ink)] shadow-xl sm:left-0">
-        <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--color-primary)]">Agent-ready</p>
-        <p class="mt-2 text-sm font-bold leading-6">Structured content with pages that remain easy to customize.</p>
+      <div class="absolute inset-x-6 bottom-6 z-10 flex items-end justify-between gap-6 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-[var(--color-ink)]/55">
+        <p>DX-50 / DX-60 / DX-70</p>
+        <p class="spec-value">0.65-inch DLP</p>
       </div>
     </div>
   </Container>
+
+  <div class="border-t border-white/10">
+    <Container class="grid grid-cols-2 divide-x divide-white/10 lg:grid-cols-4">
+      {stats.map((stat, index) => (
+        <div class:list={["py-6 lg:py-7", index > 1 && "border-t border-white/10 lg:border-t-0", index > 0 && "pl-5 sm:pl-8"]}>
+          <p class="spec-value text-xl font-semibold text-white sm:text-2xl">
+            {stat.value}{stat.unit && <span class="ml-1.5 text-[0.62rem] font-bold uppercase tracking-[0.14em] text-white/40">{stat.unit}</span>}
+          </p>
+          <p class="mt-1.5 text-[0.62rem] font-bold uppercase tracking-[0.15em] text-white/35">{stat.label}</p>
+        </div>
+      ))}
+    </Container>
+  </div>
 </section>

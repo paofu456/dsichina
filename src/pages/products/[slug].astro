@@ -21,6 +21,12 @@ interface Props {
 
 const { product } = Astro.props;
 const { Content } = await render(product);
+
+const applications = [
+  { index: "01", title: "Large meeting rooms", copy: "A clear 1080p image for presentation-led corporate spaces." },
+  { index: "02", title: "School lecture theatres", copy: "Laser projection for teaching spaces where readability matters." },
+  { index: "03", title: "Stage environments", copy: "A projection platform for performance and event spaces." },
+];
 ---
 
 <BaseLayout
@@ -28,25 +34,83 @@ const { Content } = await render(product);
   description={product.data.seo.description}
   image={product.data.images[0].src}
 >
-  <section class="border-b border-[var(--color-line)] bg-white py-16 sm:py-24">
+  <section class="border-b border-[var(--color-line)] bg-[var(--color-surface)]">
     <Container>
-      <a href="/products/" class="inline-flex items-center gap-2 text-sm font-bold text-[var(--color-primary)]">← All products</a>
-      <div class="mt-10 grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-        <ProductGallery images={product.data.images} />
+      <nav aria-label="Breadcrumb" class="flex items-center gap-3 py-6 text-[0.66rem] font-bold uppercase tracking-[0.14em] text-[var(--color-muted)]">
+        <a href="/" class="transition-colors hover:text-[var(--color-primary)]">Home</a>
+        <span aria-hidden="true" class="text-[var(--color-steel)]">/</span>
+        <span class="text-[var(--color-ink)]">DX Series</span>
+      </nav>
+
+      <div class="grid gap-12 pb-16 pt-6 lg:grid-cols-[.95fr_1.05fr] lg:items-center lg:gap-20 lg:pb-20 lg:pt-10">
         <div>
-          <p class="eyebrow mb-4">Product detail</p>
-          <h1 class="text-5xl font-extrabold leading-[1.05] sm:text-6xl">{product.data.title}</h1>
-          <p class="mt-7 text-xl leading-9 text-[var(--color-muted)]">{product.data.summary}</p>
-          <a href="/contact/" class="mt-8 inline-flex min-h-12 items-center rounded-full bg-[var(--color-primary)] px-6 py-3 text-sm font-bold text-white hover:bg-[var(--color-primary-dark)]">Discuss this product</a>
+          <p class="eyebrow">Laser engineering projector</p>
+          <h1 class="display-xl mt-5 max-w-[12ch]">{product.data.title}</h1>
+          <p class="mt-7 max-w-xl text-lg leading-8 text-[var(--color-muted)] sm:text-xl sm:leading-9">{product.data.summary}</p>
+          <dl class="mt-9 grid max-w-lg grid-cols-3 border-y border-[var(--color-line)] py-4">
+            <div>
+              <dt class="text-[0.58rem] font-bold uppercase tracking-[0.16em] text-[var(--color-steel)]">Brightness</dt>
+              <dd class="spec-value mt-1.5 text-base font-semibold">5,000–6,500 lm</dd>
+            </div>
+            <div class="border-l border-[var(--color-line)] pl-4">
+              <dt class="text-[0.58rem] font-bold uppercase tracking-[0.16em] text-[var(--color-steel)]">Resolution</dt>
+              <dd class="spec-value mt-1.5 text-base font-semibold">1920 × 1080</dd>
+            </div>
+            <div class="border-l border-[var(--color-line)] pl-4">
+              <dt class="text-[0.58rem] font-bold uppercase tracking-[0.16em] text-[var(--color-steel)]">Light source</dt>
+              <dd class="mt-1.5 text-base font-semibold">Laser</dd>
+            </div>
+          </dl>
+          <a href="/contact/" class="mt-9 inline-flex min-h-12 items-center justify-center gap-3 rounded-[2px] bg-[var(--color-primary)] px-6 py-3 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-white transition-colors hover:bg-[var(--color-primary-dark)]">
+            Discuss a project <span aria-hidden="true">→</span>
+          </a>
         </div>
+
+        <ProductGallery images={product.data.images} />
       </div>
     </Container>
   </section>
 
-  <section class="py-24 sm:py-32">
-    <Container class="grid items-start gap-14 lg:grid-cols-[1fr_.85fr] lg:gap-20">
-      <article class="prose-site"><Content /></article>
+  <section class="bg-white py-20 sm:py-24 lg:py-28">
+    <Container class="grid gap-12 lg:grid-cols-[.42fr_.58fr] lg:gap-20">
+      <div>
+        <p class="eyebrow">Specifications</p>
+        <h2 class="display-lg mt-5 max-w-[11ch]">The series at a glance.</h2>
+        <p class="mt-6 max-w-sm text-sm leading-7 text-[var(--color-muted)]">
+          The DX platform shares one optical and light-source architecture across three models.
+        </p>
+      </div>
       <ProductSpecs specifications={product.data.specifications} />
+    </Container>
+  </section>
+
+  <section class="border-y border-[var(--color-line)] bg-[var(--color-surface)] py-20 sm:py-24">
+    <Container class="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+      <div>
+        <p class="eyebrow">Applications</p>
+        <h2 class="display-lg mt-5 max-w-[10ch]">Where it fits.</h2>
+      </div>
+      <div class="border-t border-[var(--color-ink)]/20">
+        {applications.map((item) => (
+          <article class="grid gap-3 border-b border-[var(--color-line)] py-6 sm:grid-cols-[2.5rem_1fr_1.2fr] sm:items-start">
+            <p class="spec-value text-[0.62rem] font-bold tracking-[0.14em] text-[var(--color-primary)]">{item.index}</p>
+            <h3 class="text-lg font-bold tracking-[-0.02em]">{item.title}</h3>
+            <p class="max-w-sm text-sm leading-7 text-[var(--color-muted)]">{item.copy}</p>
+          </article>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-white py-20 sm:py-24 lg:py-28">
+    <Container class="grid gap-14 lg:grid-cols-[1.15fr_.85fr] lg:gap-20">
+      <article class="prose-site max-w-2xl"><Content /></article>
+      <aside class="border-t border-[var(--color-ink)] pt-6 lg:mt-2">
+        <p class="eyebrow">Project planning</p>
+        <p class="mt-4 text-xl font-bold leading-8">Tell us the room, the screen and the application.</p>
+        <p class="mt-4 text-sm leading-7 text-[var(--color-muted)]">The laser projection division can advise on the model and lens configuration for the installation.</p>
+        <a href="/contact/" class="rule-link mt-7 text-[var(--color-primary)]">Contact the team <span aria-hidden="true">→</span></a>
+      </aside>
     </Container>
   </section>
 

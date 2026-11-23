@@ -1,14 +1,26 @@
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url("/fonts/source-sans-3-latin.woff2") format("woff2");
+}
+
 :root {
-  --color-ink: #10211d;
-  --color-muted: #5b6b66;
-  --color-surface: #f4f7f5;
+  --color-ink: #0a0c0e;
+  --color-ink-soft: #15181b;
+  --color-muted: #62676c;
+  --color-surface: #f3f1ec;
+  --color-surface-deep: #e9e6df;
   --color-card: #ffffff;
-  --color-line: #dfe8e4;
-  --color-primary: #0c6b58;
-  --color-primary-dark: #074b3e;
-  --color-accent: #f0b44d;
-  --font-heading: "Manrope", "Segoe UI", sans-serif;
-  --font-body: "Inter", "Segoe UI", sans-serif;
-  --shadow-card: 0 24px 60px rgba(16, 33, 29, 0.09);
-  --radius-card: 1.5rem;
+  --color-line: #d9d5cc;
+  --color-line-dark: #2b2f33;
+  --color-primary: #d95002;
+  --color-primary-dark: #b34200;
+  --color-accent: #ffb27d;
+  --color-steel: #8f9499;
+  --font-heading: "Source Sans 3", "Segoe UI", sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", sans-serif;
+  --shadow-card: 0 22px 60px rgba(10, 12, 14, 0.08);
+  --radius-card: 2px;
 }
