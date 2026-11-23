@@ -16,7 +16,7 @@ const phoneHref = `tel:+86${company.phone.replace(/[^0-9]/g, "").replace(/^0/, "
       <div>
         <p class="eyebrow">Contact</p>
         <h1 class="display-xl mt-5 max-w-[12ch]">Talk directly to the projection team.</h1>
-        <p class="mt-7 max-w-xl text-lg leading-8 text-white/62">
+        <p class="mt-7 max-w-xl text-lg leading-8 text-white/70">
           For product selection, project planning and technical questions about the DX Series, contact the laser projection division.
         </p>
       </div>
@@ -28,16 +28,15 @@ const phoneHref = `tel:+86${company.phone.replace(/[^0-9]/g, "").replace(/^0/, "
   </section>
 
   <section class="border-t border-white/10 bg-[var(--color-primary)] text-white">
-    <Container class="grid gap-px bg-white/20 md:grid-cols-2">
-      <div class="bg-[var(--color-primary)] py-12 pr-6 sm:py-14 md:pr-12 lg:pr-20">
+    <Container class="grid md:grid-cols-2">
+      <div class="py-12 md:pr-12 lg:pr-20">
         <p class="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-white/60">Call the laser projection division</p>
         <a href={phoneHref} class="spec-value mt-4 block text-3xl font-semibold tracking-[-0.03em] transition-opacity hover:opacity-75 sm:text-4xl">{company.phone}</a>
         <p class="mt-4 max-w-sm text-sm leading-6 text-white/75">Please have the room dimensions, intended screen size and application ready for a more productive first call.</p>
       </div>
-      <div class="bg-[var(--color-primary)] py-12 pl-6 sm:py-14 md:pl-12 lg:pl-20">
+      <div class="border-t border-white/20 py-12 md:border-l md:border-t-0 md:pl-12 lg:pl-20">
         <p class="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-white/60">Office</p>
         <address class="mt-4 max-w-md text-xl font-semibold not-italic leading-8 sm:text-2xl">{company.address}</address>
-        <p class="mt-4 text-sm leading-6 text-white/75">Shenzhen, China</p>
       </div>
     </Container>
   </section>

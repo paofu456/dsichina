@@ -9,8 +9,6 @@ images:
   - src: /media/products/dx-series.jpg
     alt: DUALSHINE DX Series black laser engineering projector
 specifications:
-  - label: Models
-    value: DX-50 / DX-60 / DX-70
   - label: Display technology
     value: 0.65-inch single-chip DLP
   - label: Light source
