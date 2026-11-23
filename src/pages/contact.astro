@@ -1,0 +1,69 @@
+---
+import Container from "../components/ui/Container.astro";
+import company from "../data/company.json";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { makePageTitle } from "../lib/seo";
+
+const phoneHref = `tel:+86${company.phone.replace(/[^0-9]/g, "").replace(/^0/, "")}`;
+---
+
+<BaseLayout
+  title={makePageTitle("Contact")}
+  description="Contact the DUALSHINE laser projection division by telephone or visit the company office in Bao'an District, Shenzhen."
+>
+  <section class="bg-[var(--color-ink)] py-16 text-white sm:py-20 lg:py-24">
+    <Container class="grid gap-12 lg:grid-cols-[1.1fr_.9fr] lg:items-end lg:gap-20">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h1 class="display-xl mt-5 max-w-[12ch]">Talk directly to the projection team.</h1>
+        <p class="mt-7 max-w-xl text-lg leading-8 text-white/70">
+          For product selection, project planning and technical questions about the DX Series, contact the laser projection division.
+        </p>
+      </div>
+      <div class="lg:justify-self-end">
+        <p class="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-white/38">Telephone</p>
+        <a href={phoneHref} class="spec-value mt-2 block text-4xl font-semibold tracking-[-0.04em] text-white transition-colors hover:text-[var(--color-accent)] sm:text-5xl lg:text-6xl">{company.phone}</a>
+      </div>
+    </Container>
+  </section>
+
+  <section class="border-t border-white/10 bg-[var(--color-primary)] text-white">
+    <Container class="grid md:grid-cols-2">
+      <div class="py-12 md:pr-12 lg:pr-20">
+        <p class="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-white/60">Call the laser projection division</p>
+        <a href={phoneHref} class="spec-value mt-4 block text-3xl font-semibold tracking-[-0.03em] transition-opacity hover:opacity-75 sm:text-4xl">{company.phone}</a>
+        <p class="mt-4 max-w-sm text-sm leading-6 text-white/75">Please have the room dimensions, intended screen size and application ready for a more productive first call.</p>
+      </div>
+      <div class="border-t border-white/20 py-12 md:border-l md:border-t-0 md:pl-12 lg:pl-20">
+        <p class="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-white/60">Office</p>
+        <address class="mt-4 max-w-md text-xl font-semibold not-italic leading-8 sm:text-2xl">{company.address}</address>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-[var(--color-surface)] py-20 sm:py-24 lg:py-28">
+    <Container class="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+      <div>
+        <p class="eyebrow">Project planning</p>
+        <h2 class="display-lg mt-5 max-w-[12ch]">A better first conversation.</h2>
+      </div>
+      <div class="border-t border-[var(--color-ink)]/20">
+        <div class="grid gap-3 border-b border-[var(--color-line)] py-6 sm:grid-cols-[2.5rem_1fr_1.3fr] sm:items-start">
+          <p class="spec-value text-[0.62rem] font-bold tracking-[0.14em] text-[var(--color-primary)]">01</p>
+          <h3 class="text-lg font-bold">The room</h3>
+          <p class="max-w-sm text-sm leading-7 text-[var(--color-muted)]">Room dimensions, seating layout and the amount of ambient light.</p>
+        </div>
+        <div class="grid gap-3 border-b border-[var(--color-line)] py-6 sm:grid-cols-[2.5rem_1fr_1.3fr] sm:items-start">
+          <p class="spec-value text-[0.62rem] font-bold tracking-[0.14em] text-[var(--color-primary)]">02</p>
+          <h3 class="text-lg font-bold">The screen</h3>
+          <p class="max-w-sm text-sm leading-7 text-[var(--color-muted)]">Intended image size, aspect ratio and mounting position.</p>
+        </div>
+        <div class="grid gap-3 border-b border-[var(--color-line)] py-6 sm:grid-cols-[2.5rem_1fr_1.3fr] sm:items-start">
+          <p class="spec-value text-[0.62rem] font-bold tracking-[0.14em] text-[var(--color-primary)]">03</p>
+          <h3 class="text-lg font-bold">The application</h3>
+          <p class="max-w-sm text-sm leading-7 text-[var(--color-muted)]">Teaching, presentation, stage or large-screen projection.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
