@@ -4,7 +4,7 @@ export const siteConfig = {
   siteUrl: undefined as string | undefined,
   siteMode: "local" as "local" | "production",
   contentStatus: "draft" as "demo" | "draft" | "ready",
-  sampleDetailSlug: undefined as string | undefined,
+  sampleDetailSlug: "dx-laser-series" as string | undefined,
   navigation: [
     { label: "Home", href: "/" },
     { label: "Products", href: "/products/" },

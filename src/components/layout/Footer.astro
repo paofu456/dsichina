@@ -5,7 +5,7 @@ import Container from "../ui/Container.astro";
 const { name, phone, email, address, location } = company;
 const dial = phone.replace(/[^\d+]/g, "");
 ---
-<footer id="contact" class="forge-footer">
+<footer id="site-footer" class="forge-footer">
   <Container class="forge-footer-layout">
     <div>
       <h2>Contact {company.shortName || name}</h2>

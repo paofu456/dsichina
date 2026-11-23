@@ -1,0 +1,22 @@
+---
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+import company from "../../data/company.json";
+
+const phoneHref = company.phone.replace(/[^\d+]/g, "");
+---
+
+<section class="dsi-company">
+  <Container class="dsi-company-grid">
+    <div>
+      <p class="dsi-kicker">Manufacturing in Shenzhen</p>
+      <h2>Projection hardware, developed and built in-house.</h2>
+    </div>
+    <div class="dsi-company-copy">
+      <p>
+        Founded in {company.founded}, DUALSHINE develops and manufactures projection and interactive display systems in Shenzhen. Production includes complete-machine and optical-engine lines with testing and inspection equipment.
+      </p>
+      <Button href={`tel:${phoneHref}`} variant="secondary" class="dsi-company-button">Talk to our projector team</Button>
+    </div>
+  </Container>
+</section>

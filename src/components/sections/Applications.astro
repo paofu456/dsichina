@@ -1,0 +1,45 @@
+---
+import Container from "../ui/Container.astro";
+
+const applications = [
+  {
+    number: "01",
+    title: "Auditoriums",
+    copy: "Large-format projection across the whole room.",
+  },
+  {
+    number: "02",
+    title: "Lecture halls",
+    copy: "Laser projection for daily teaching and events.",
+  },
+  {
+    number: "03",
+    title: "Boardrooms",
+    copy: "Full-HD presentation for different room layouts.",
+  },
+  {
+    number: "04",
+    title: "Stages",
+    copy: "Bright engineering projection for live events.",
+  },
+];
+---
+
+<section class="dsi-applications">
+  <Container>
+    <div class="dsi-section-head">
+      <p class="dsi-kicker">Where it fits</p>
+      <h2>Built for rooms where the image has to carry.</h2>
+      <p>From classrooms to stages, the DX series is specified around the room.</p>
+    </div>
+    <div class="dsi-application-grid">
+      {applications.map(({ number, title, copy }) => (
+        <article>
+          <span>{number}</span>
+          <h3>{title}</h3>
+          <p>{copy}</p>
+        </article>
+      ))}
+    </div>
+  </Container>
+</section>

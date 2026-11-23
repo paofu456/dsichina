@@ -9,6 +9,7 @@ const navigation = siteConfig.sampleDetailSlug
   : siteConfig.navigation;
 const isActive = (href: string) => href === "/" ? path === "/" : path.startsWith(href);
 const phoneHref = company.phone.replace(/[^\d+]/g, "");
+const contactHref = siteConfig.sampleDetailSlug ? "#contact" : "/contact/";
 ---
 
 <header class="dsi-header">
@@ -41,7 +42,7 @@ const phoneHref = company.phone.replace(/[^\d+]/g, "");
       </nav>
 
       <div class="dsi-nav-actions">
-        <a href={siteConfig.sampleDetailSlug ? "#contact" : "/contact/"} class="dsi-quote-button hidden md:inline-flex">
+        <a href={contactHref} class="dsi-quote-button hidden md:inline-flex">
           Contact sales
         </a>
         <button
@@ -69,7 +70,7 @@ const phoneHref = company.phone.replace(/[^\d+]/g, "");
           {item.label}
         </a>
       ))}
-      <a href="/contact/" class="mt-3 inline-flex items-center justify-center bg-[var(--color-primary)] px-5 py-3 text-sm font-bold text-white">
+      <a href={contactHref} class="mt-3 inline-flex items-center justify-center bg-[var(--color-primary)] px-5 py-3 text-sm font-bold text-white">
         Contact sales
       </a>
     </Container>

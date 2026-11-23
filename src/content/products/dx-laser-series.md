@@ -32,12 +32,4 @@ seo:
   description: Explore the DUALSHINE DX-50, DX-60 and DX-70 laser engineering projectors for auditoriums, lecture halls, boardrooms and stages.
 ---
 
-The DX series is built for large-format presentation where brightness, installation flexibility and long-term reliability matter.
-
-## A single platform, three models
-
-DX-50, DX-60 and DX-70 share a 0.65" single-DLP laser engine with 1920 × 1080 resolution and a 16:10 / 16:9 aspect ratio.
-
-## Installation options
-
-Choose a fixed or motorized lens configuration to suit the room, throw distance and mounting position.
+The DX series is a single-DLP laser platform built for large-format presentation. DX-50, DX-60 and DX-70 share 0.65-inch DLP, 1920 × 1080 resolution, a 16:10 / 16:9 aspect ratio and fixed or motorized lens options.

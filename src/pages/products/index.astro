@@ -1,5 +1,5 @@
 ---
-import ProductCard from "../../components/product/ProductCard.astro";
+import Button from "../../components/ui/Button.astro";
 import Container from "../../components/ui/Container.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import company from "../../data/company.json";
@@ -7,14 +7,106 @@ import { getPublishedProducts } from "../../lib/products";
 import { makePageTitle } from "../../lib/seo";
 
 const products = await getPublishedProducts();
+const primary = products.find(({ data }) => data.slug === "dx-laser-series") ?? products[0];
+const image = primary?.data.images[0];
+
+const otherFormats = [
+  {
+    id: "long-throw-laser-projector",
+    title: "Laser long-throw projector",
+    summary: "Long-distance laser projection for rooms where the projector must sit far from the screen.",
+    image: "/media/products/long-throw.jpg",
+    alt: "DUALSHINE white laser long-throw projector",
+    facts: ["5,000–6,000 lm", "Laser light source", "Manual focus"],
+  },
+  {
+    id: "high-brightness-laser-projector",
+    title: "High-brightness business laser projector",
+    summary: "A laser engineering projector for business and installation applications.",
+    image: "/media/products/high-brightness-projector.jpg",
+    alt: "DUALSHINE high-brightness business laser projector",
+    facts: ["Laser light source", "Business and installation"],
+  },
+];
 ---
-<BaseLayout title={makePageTitle("Products")} description={`Explore products from ${company.name}.`}>
-  <section>
-    <Container class="forge-catalog">
-      <h1 class="forge-title">Products</h1>
-      <div class="forge-product-grid">
-        {products.map((product) => <ProductCard product={product} />)}
+
+<BaseLayout title={makePageTitle("Products")} description={`Explore laser engineering projection systems from ${company.name}.`}>
+  <section class="dsi-page-head">
+    <Container>
+      <nav class="dsi-breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true">/</span><span>Products</span>
+      </nav>
+      <div class="dsi-page-head-grid">
+        <div>
+          <h1>Projectors specified around the room.</h1>
+        </div>
+        <div class="dsi-page-head-copy">
+          <p>Choose a projection format by room, image size and installation distance. Our team can help confirm the model and lens configuration.</p>
+          <dl>
+            <div><dt>Series models</dt><dd>DX-50 / 60 / 70</dd></div>
+            <div><dt>Output range</dt><dd>5,000–6,500 lm</dd></div>
+            <div><dt>Native format</dt><dd>1920 × 1080</dd></div>
+          </dl>
+        </div>
       </div>
+    </Container>
+  </section>
+
+  <section class="dsi-product-catalog">
+    <Container>
+      {primary && (
+        <article class="dsi-feature-product">
+          <a href={`/products/${primary.data.slug}/`} class="dsi-feature-media" aria-label={`View ${primary.data.title}`}>
+            {image && <img src={image.src} alt={image.alt} width="3840" height="3308" />}
+            <span class="dsi-feature-flag">Flagship series</span>
+          </a>
+          <div class="dsi-feature-copy">
+            <p class="dsi-kicker">Engineering projection</p>
+            <h2><a href={`/products/${primary.data.slug}/`}>DX laser series</a></h2>
+            <p>{primary.data.summary}</p>
+            <ul class="dsi-inline-facts">
+              <li><strong>5,000–6,500 lm</strong><span>Laser output</span></li>
+              <li><strong>1920 × 1080</strong><span>Full HD</span></li>
+              <li><strong>3 models</strong><span>DX-50 / 60 / 70</span></li>
+            </ul>
+            <div class="dsi-action-row">
+              <Button href={`/products/${primary.data.slug}/`} class="dsi-button-primary">View DX series <span aria-hidden="true">→</span></Button>
+              <a href="#contact" class="dsi-sales-link">Ask about a room</a>
+            </div>
+          </div>
+        </article>
+      )}
+
+      <div class="dsi-catalog-heading">
+        <div>
+          <p class="dsi-kicker">Other projector formats</p>
+          <h2>Long-throw and high-brightness options.</h2>
+        </div>
+        <p>Exact model and configuration are confirmed against your installation requirements.</p>
+      </div>
+
+      <div class="dsi-format-grid">
+        {otherFormats.map(({ id, title, summary, image: cardImage, alt, facts }) => (
+          <article id={id} class="dsi-format-card">
+            <div class="dsi-format-media"><img src={cardImage} alt={alt} loading="lazy" /></div>
+            <div class="dsi-format-copy">
+              <h3>{title}</h3>
+              <p>{summary}</p>
+              <ul>{facts.map((fact) => <li>{fact}</li>)}</ul>
+              <a href="#contact">Discuss this format <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <aside id="contact" class="dsi-catalog-note">
+        <div>
+          <p class="dsi-kicker">Also from DUALSHINE</p>
+          <h2>Interactive displays for education and business.</h2>
+        </div>
+        <p>Interactive whiteboards and interactive flat panels are available alongside our projection systems. Contact our team to discuss a combined room configuration.</p>
+        <a href="#contact">Talk to sales <span aria-hidden="true">→</span></a>
+      </aside>
     </Container>
   </section>
 </BaseLayout>

@@ -1,11 +1,19 @@
 ---
-import { siteConfig } from "../../../site.config";
+import company from "../../data/company.json";
 import Container from "../ui/Container.astro";
-import Button from "../ui/Button.astro";
+
+const phoneHref = company.phone.replace(/[^\d+]/g, "");
 ---
-<section class="forge-contact">
-  <Container class="forge-contact-layout">
-    <h2 class="forge-heading">Discuss your requirements</h2>
-    <Button href={siteConfig.sampleDetailSlug ? "#contact" : "/contact/"} variant="secondary">Contact us</Button>
+
+<section id="contact" class="dsi-contact-cta">
+  <Container class="dsi-contact-cta-grid">
+    <div>
+      <p class="dsi-kicker">Projector sales</p>
+      <h2>Planning a room or an upgrade?</h2>
+    </div>
+    <div>
+      <p>Tell us the room, screen and mounting distance.</p>
+      <a href={`tel:${phoneHref}`}>{company.phone} <span aria-hidden="true">→</span></a>
+    </div>
   </Container>
 </section>

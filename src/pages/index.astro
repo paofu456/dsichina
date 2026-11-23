@@ -1,13 +1,19 @@
 ---
+import Applications from "../components/sections/Applications.astro";
+import CompanyBand from "../components/sections/CompanyBand.astro";
 import ContactCta from "../components/sections/ContactCta.astro";
-import FeaturedProducts from "../components/sections/FeaturedProducts.astro";
+import DXOverview from "../components/sections/DXOverview.astro";
 import Hero from "../components/sections/Hero.astro";
+import ProductFamilies from "../components/sections/ProductFamilies.astro";
 import company from "../data/company.json";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { makePageTitle } from "../lib/seo";
 ---
 <BaseLayout title={makePageTitle()} description={company.description}>
   <Hero />
-  <FeaturedProducts />
+  <DXOverview />
+  <Applications />
+  <ProductFamilies />
+  <CompanyBand />
   <ContactCta />
 </BaseLayout>

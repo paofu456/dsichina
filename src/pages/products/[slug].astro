@@ -1,9 +1,9 @@
 ---
 import { render, type CollectionEntry } from "astro:content";
-import ProductGallery from "../../components/product/ProductGallery.astro";
 import ProductSpecs from "../../components/product/ProductSpecs.astro";
 import Button from "../../components/ui/Button.astro";
 import Container from "../../components/ui/Container.astro";
+import company from "../../data/company.json";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getPublishedProducts } from "../../lib/products";
 import { siteConfig } from "../../../site.config";
@@ -13,42 +13,111 @@ export async function getStaticPaths() {
     .filter(({ data }) => !siteConfig.sampleDetailSlug || data.slug === siteConfig.sampleDetailSlug)
     .map((product) => ({ params: { slug: product.data.slug }, props: { product } }));
 }
+
 interface Props {
   product: CollectionEntry<"products">;
 }
+
 const { product } = Astro.props;
 const { data } = product;
 const { Content } = await render(product);
-const contact = siteConfig.sampleDetailSlug ? "#contact" : "/contact/";
+const image = data.images[0];
+const phoneHref = company.phone.replace(/[^\d+]/g, "");
+const applications = ["Auditoriums", "Lecture halls", "Boardrooms", "Stages"];
 ---
-<BaseLayout title={data.seo.title} description={data.seo.description} image={data.images[0]?.src}>
-  <Container class="forge-detail">
-    <a href="/products/" class="forge-text-link">All products</a>
-    <section class:list={["forge-detail-top", data.images.length > 0 && "forge-detail-with-image"]}>
-      <div class="forge-detail-title">
-        <h1 class="forge-title">{data.title}</h1>
-        <p class="forge-intro">{data.summary}</p>
-        <Button href={data.specifications.length ? "#specifications" : contact}>
-          {data.specifications.length ? "See specifications" : "Contact us"}
-        </Button>
-      </div>
-      {data.images.length > 0 && <ProductGallery images={data.images} />}
-    </section>
-    {(data.models.length > 0 || product.body?.trim() || data.specifications.length > 0) && (
-      <section class="forge-detail-information">
-        {(data.models.length > 0 || product.body?.trim()) && (
-          <div>
-            {data.models.length > 0 && (
-              <div class="forge-models">
-                <h2 class="forge-heading">Models</h2>
-                <ul>{data.models.map((model) => <li>{model}</li>)}</ul>
-              </div>
-            )}
-            {product.body?.trim() && <article class="prose-site"><Content /></article>}
+
+<BaseLayout title={data.seo.title} description={data.seo.description} image={image?.src}>
+  <section class="dsi-detail-head">
+    <Container>
+      <nav class="dsi-breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true">/</span><a href="/products/">Products</a><span aria-hidden="true">/</span><span>DX series</span>
+      </nav>
+
+      <div class="dsi-detail-grid">
+        <div class="dsi-detail-copy">
+          <h1>DX laser engineering projector series</h1>
+          <p class="dsi-detail-lede">{data.summary}</p>
+          <div class="dsi-action-row">
+            <Button href="#contact" class="dsi-button-primary">Discuss your room <span aria-hidden="true">→</span></Button>
+            <a href="#specifications" class="dsi-sales-link">View specifications</a>
           </div>
+          <dl class="dsi-detail-facts">
+            <div><dt>Brightness</dt><dd>5,000–6,500 lm</dd></div>
+            <div><dt>Resolution</dt><dd>1920 × 1080</dd></div>
+            <div><dt>Light engine</dt><dd>Laser / DLP</dd></div>
+          </dl>
+        </div>
+
+        {image && (
+          <figure class="dsi-detail-media">
+            <div class="dsi-detail-image"><img src={image.src} alt={image.alt} width="3840" height="3308" /></div>
+            <figcaption>
+              <span>DX series</span>
+              <span>DX-50 · DX-60 · DX-70</span>
+            </figcaption>
+          </figure>
         )}
-        <ProductSpecs specifications={data.specifications} title={data.models.length > 1 ? "Series specifications" : "Specifications"} />
-      </section>
-    )}
-  </Container>
+      </div>
+    </Container>
+  </section>
+
+  <section class="dsi-model-band">
+    <Container class="dsi-model-band-grid">
+      <div>
+        <p class="dsi-kicker">Available models</p>
+        <h2>Three models. One shared platform.</h2>
+      </div>
+      <div class="dsi-model-list">
+        {data.models.map((model, index) => (
+          <div>
+            <span>0{index + 1}</span>
+            <strong>{model}</strong>
+          </div>
+        ))}
+      </div>
+      <p class="dsi-model-note">Series-level specifications apply across DX-50, DX-60 and DX-70. Final brightness, lens and configuration are confirmed for each installation.</p>
+    </Container>
+  </section>
+
+  <section class="dsi-detail-story">
+    <Container class="dsi-detail-story-grid">
+      <div class="dsi-prose"><p class="dsi-kicker">Series overview</p><div class="prose-site"><Content /></div></div>
+      <aside class="dsi-installation">
+        <p class="dsi-kicker">Installation flexibility</p>
+        <h2>A projector that can meet the room.</h2>
+        <ul>
+          <li><span>01</span><p><strong>Fixed or motorized lenses</strong>Match the lens to the room.</p></li>
+          <li><span>02</span><p><strong>16:10 and 16:9 formats</strong>Match content and screen shape.</p></li>
+          <li><span>03</span><p><strong>Full HD detail</strong>1920 × 1080 across the series.</p></li>
+        </ul>
+      </aside>
+    </Container>
+  </section>
+
+  <section class="dsi-spec-section">
+    <Container class="dsi-spec-grid">
+      <div>
+        <p class="dsi-kicker">Series reference</p>
+        <h2>What the series shares.</h2>
+        <p class="dsi-spec-intro">The values below are published at series level. Ask our team to confirm the exact configuration for your room.</p>
+        <div class="dsi-application-tags">{applications.map((item) => <span>{item}</span>)}</div>
+      </div>
+      <ProductSpecs specifications={data.specifications} />
+    </Container>
+  </section>
+
+  <section id="contact" class="dsi-detail-contact">
+    <Container class="dsi-detail-contact-grid">
+      <div>
+        <p class="dsi-kicker">Projector sales</p>
+        <h2>Configure the right DX system.</h2>
+      </div>
+      <div>
+        <p>Tell us the room dimensions, screen size and mounting distance. Our projector team will help confirm the model and lens.</p>
+        <a href={`tel:${phoneHref}`} class="dsi-contact-phone">{company.phone}</a>
+        <address>{company.address}</address>
+        <a href="/products/" class="dsi-back-link">← Back to all products</a>
+      </div>
+    </Container>
+  </section>
 </BaseLayout>

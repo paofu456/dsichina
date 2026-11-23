@@ -1,0 +1,46 @@
+---
+import Container from "../ui/Container.astro";
+
+const families = [
+  {
+    name: "DX laser series",
+    summary: "DX-50, DX-60 and DX-70 for auditoriums, lecture halls, boardrooms and stages.",
+    facts: ["5,000–6,500 lm", "1920 × 1080", "Fixed or motorized lens"],
+    href: "/products/dx-laser-series/",
+  },
+  {
+    name: "Laser long-throw",
+    summary: "A long-distance projection format for rooms where the projector sits far from the screen.",
+    facts: ["5,000–6,000 lm", "Laser light source", "Manual focus"],
+    href: "/products/#long-throw-laser-projector",
+  },
+  {
+    name: "High-brightness laser",
+    summary: "A high-brightness engineering projector for business and installation applications.",
+    facts: ["Laser light source", "Business and installation"],
+    href: "/products/#high-brightness-laser-projector",
+  },
+];
+---
+
+<section class="dsi-families">
+  <Container>
+    <div class="dsi-section-head dsi-section-head-row">
+      <div>
+        <p class="dsi-kicker">Projector range</p>
+        <h2>Start with the room. Then choose the format.</h2>
+      </div>
+      <a href="/products/">View all products <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="dsi-family-grid">
+      {families.map(({ name, summary, facts, href }, index) => (
+        <article class:list={["dsi-family-card", index === 0 && "is-primary"]}>
+          <p class="dsi-family-index">0{index + 1}</p>
+          <h3><a href={href}>{name}</a></h3>
+          <p>{summary}</p>
+          <ul>{facts.map((fact) => <li>{fact}</li>)}</ul>
+        </article>
+      ))}
+    </div>
+  </Container>
+</section>
