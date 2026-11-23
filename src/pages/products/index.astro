@@ -1,0 +1,20 @@
+---
+import ProductCard from "../../components/product/ProductCard.astro";
+import Container from "../../components/ui/Container.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import company from "../../data/company.json";
+import { getPublishedProducts } from "../../lib/products";
+import { makePageTitle } from "../../lib/seo";
+
+const products = await getPublishedProducts();
+---
+<BaseLayout title={makePageTitle("Products")} description={`Explore products from ${company.name}.`}>
+  <section>
+    <Container class="forge-catalog">
+      <h1 class="forge-title">Products</h1>
+      <div class="forge-product-grid">
+        {products.map((product) => <ProductCard product={product} />)}
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

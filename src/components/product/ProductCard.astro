@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { siteConfig } from "../../../site.config";
+
+interface Props {
+  product: CollectionEntry<"products">;
+}
+const { product: { data } } = Astro.props;
+const image = data.images[0];
+const href = !siteConfig.sampleDetailSlug || siteConfig.sampleDetailSlug === data.slug ? `/products/${data.slug}/` : undefined;
+---
+<article class="forge-product" id={data.slug}>
+  {image && <div class="forge-product-media"><img src={image.src} alt={image.alt} loading="lazy" /></div>}
+  <div class="forge-product-copy">
+    <h2>{href ? <a href={href}>{data.title}</a> : data.title}</h2>
+    <p>{data.summary}</p>
+  </div>
+</article>

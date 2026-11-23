@@ -1,0 +1,73 @@
+---
+import company from "../../data/company.json";
+import { getPublishedProducts } from "../../lib/products";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+
+const products = await getPublishedProducts();
+const featured = products.find(({ data }) => data.slug === "dx-laser-series") ?? products.find(({ data }) => data.featured) ?? products[0];
+const image = featured?.data.images[0];
+const phoneHref = company.phone.replace(/[^\d+]/g, "");
+---
+<section class="dsi-hero">
+  <Container class="dsi-hero-grid">
+    <div class="dsi-hero-copy">
+      <p class="dsi-eyebrow"><span aria-hidden="true"></span> Laser engineering projection</p>
+      <h1 class="dsi-hero-title">Big-room projection.<br />Built to perform.</h1>
+      <p class="dsi-hero-lede">
+        Laser engineering projectors from 5,000 to 6,500 lumens — engineered for auditoriums,
+        classrooms, boardrooms and stages.
+      </p>
+
+      <div class="dsi-hero-actions">
+        {products.length > 0 ? (
+          <Button href="/products/" class="dsi-button-primary">Explore the DX series <span aria-hidden="true">→</span></Button>
+        ) : (
+          <Button href="/contact/" class="dsi-button-primary">Talk to our team <span aria-hidden="true">→</span></Button>
+        )}
+        {company.phone && <a href={`tel:${phoneHref}`} class="dsi-sales-link">Talk to sales <span aria-hidden="true">↗</span></a>}
+      </div>
+
+      <dl class="dsi-hero-facts" aria-label="DX series key specifications">
+        <div>
+          <dt>Brightness</dt>
+          <dd>5,000–6,500 lm</dd>
+        </div>
+        <div>
+          <dt>Resolution</dt>
+          <dd>1920 × 1080</dd>
+        </div>
+        <div>
+          <dt>Light engine</dt>
+          <dd>Laser / DLP</dd>
+        </div>
+      </dl>
+    </div>
+
+    <figure class="dsi-hero-media">
+      {image ? (
+        <img src={image.src} alt={image.alt} width="2200" height="1895" fetchpriority="high" />
+      ) : (
+        <div class="dsi-hero-media-empty" aria-hidden="true"></div>
+      )}
+      <figcaption class="dsi-hero-caption">
+        <span class="dsi-hero-series">DX Series</span>
+        <span class="dsi-hero-models">DX-50 · DX-60 · DX-70</span>
+      </figcaption>
+      <span class="dsi-hero-tag">Laser light source</span>
+    </figure>
+  </Container>
+
+  <div class="dsi-hero-foot">
+    <Container class="dsi-hero-foot-inner">
+      <p class="dsi-hero-foot-label">Built for</p>
+      <ul class="dsi-hero-foot-list" aria-label="Typical applications">
+        <li>Auditoriums</li>
+        <li>Lecture halls</li>
+        <li>Boardrooms</li>
+        <li>Stages</li>
+      </ul>
+      <p class="dsi-hero-origin">Engineered and manufactured in Shenzhen</p>
+    </Container>
+  </div>
+</section>

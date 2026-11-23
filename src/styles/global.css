@@ -1,0 +1,152 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+@font-face {
+  font-family: Manrope;
+  src: url("/fonts/manrope.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@layer base {
+  html, body { overflow-x: clip; }
+  html { scroll-padding-top: 1rem; }
+  body { margin: 0; background: var(--color-surface); color: var(--color-ink); font-family: var(--font-body); line-height: 1.6; }
+  h1, h2, h3 { font-family: var(--font-heading); overflow-wrap: break-word; }
+  :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 4px; }
+  ::selection { background: var(--color-accent); color: var(--color-ink); }
+}
+
+@layer components {
+  .forge-title { min-width: 0; font-size: clamp(2.5rem, 5.2vw, 4.75rem); font-weight: 600; line-height: 1.04; letter-spacing: -.035em; }
+  .forge-hero-title { max-width: 20ch; font-size: clamp(2.5rem, 4.55vw, 4.125rem); text-wrap: balance; }
+  .forge-heading { font-size: clamp(1.45rem, 2.45vw, 2rem); font-weight: 600; line-height: 1.18; letter-spacing: -.024em; }
+  .forge-intro { max-width: 44ch; margin-block: 1rem 1.5rem; color: var(--color-muted); font-size: 1.0625rem; }
+  .forge-hero { padding-block: clamp(2rem, 5vw, 4.25rem) clamp(2rem, 4vw, 3.5rem); }
+  .forge-hero-layout, .forge-detail-top, .forge-detail-information { display: grid; align-items: center; gap: clamp(1.5rem, 4vw, 3.5rem); }
+  .forge-hero-media, .forge-product-media, .forge-gallery-media { overflow: clip; border-radius: var(--radius-card); background: var(--color-photo); }
+  .forge-hero-media img, .forge-product-media img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; }
+  .forge-lineup { padding-block: 2rem 3.5rem; }
+  .forge-lineup h2 { border-top: 1px solid var(--color-line); padding-top: 2rem; }
+  .forge-lineup ul { display: grid; gap: .875rem; margin-top: 1.25rem; }
+  .forge-lineup a { display: block; padding-block: .75rem; border-block: 1px solid var(--color-line); font-weight: 600; }
+  .forge-lineup a:hover, .forge-product a:hover, .forge-text-link { text-decoration: underline; text-underline-offset: .22em; }
+  .forge-catalog, .forge-basic { padding-block: clamp(2rem, 4.4vw, 3.5rem) 4rem; }
+  .forge-product-grid { display: grid; align-items: stretch; gap: 1.5rem; margin-top: 1.75rem; }
+  .forge-product { min-width: 0; overflow: clip; border: 1px solid var(--color-line); border-radius: var(--radius-card); background: var(--color-card); }
+  .forge-product-media { border-radius: 0; }
+  .forge-product-copy { padding: 1.25rem; }
+  .forge-product-copy h2 { font-size: 1.325rem; font-weight: 600; line-height: 1.25; }
+  .forge-product-copy p { margin-top: .5rem; color: var(--color-muted); }
+  .forge-text-link, .forge-product a { color: var(--color-primary); text-underline-offset: .22em; }
+  .forge-detail { padding-block: 2rem 3.5rem; }
+  .forge-detail-top { margin-top: 1.25rem; }
+  .forge-detail-information { align-items: start; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--color-line); }
+  .forge-models ul { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-block: .8rem 1rem; font-weight: 600; }
+  .forge-specifications dl, .forge-facts { margin-top: 1rem; border-top: 1px solid var(--color-line); }
+  .forge-specifications dl div, .forge-facts div { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr); gap: .75rem; padding-block: .65rem; border-bottom: 1px solid var(--color-line); }
+  .forge-specifications dt, .forge-facts dt { color: var(--color-muted); }
+  .forge-specifications dd { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  .forge-facts { max-width: 42rem; }
+  .forge-facts dd, .forge-footer address { overflow-wrap: anywhere; }
+  .forge-facts a, .forge-footer a { display: block; color: var(--color-primary); text-decoration: underline; text-underline-offset: .2em; }
+  .forge-contact { padding-block: 1.75rem; background: var(--color-photo); }
+  .forge-footer { padding-block: 2rem; border-top: 1px solid var(--color-line); }
+  .forge-contact-layout, .forge-footer-layout { display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1rem 2rem; }
+  .forge-footer h2 { font-weight: 600; margin-bottom: .4rem; }
+  .forge-footer address { display: grid; min-width: 0; font-style: normal; color: var(--color-muted); }
+  .prose-site { color: var(--color-muted); max-width: 65ch; }
+  .prose-site h2 { color: var(--color-ink); font-size: 1.375rem; font-weight: 600; margin: 1.5rem 0 .5rem; }
+  .prose-site p { margin: 0 0 1rem; }
+
+  /* DUALSHINE homepage */
+  .dsi-header { background: #fff; }
+  .dsi-topbar { background: var(--color-ink); color: rgba(255, 255, 255, .72); }
+  .dsi-topbar-inner { display: flex; min-height: 2.05rem; align-items: center; justify-content: space-between; gap: 1.5rem; font-size: .67rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+  .dsi-topbar p { margin: 0; }
+  .dsi-topbar-contact { display: inline-flex; align-items: center; gap: .55rem; }
+  .dsi-topbar-contact span { color: rgba(255, 255, 255, .46); }
+  .dsi-topbar a { color: #fff; text-decoration: none; }
+  .dsi-topbar a:hover { color: var(--color-accent); }
+  .dsi-navbar { border-bottom: 1px solid var(--color-line); background: #fff; }
+  .dsi-navbar-inner { display: flex; min-height: 5rem; align-items: center; justify-content: space-between; gap: 2rem; }
+  .dsi-brand { display: inline-flex; align-items: center; }
+  .dsi-nav { align-items: center; gap: clamp(1.2rem, 2.4vw, 2.35rem); }
+  .dsi-nav-link { position: relative; padding-block: 1.95rem; color: var(--color-muted); font-size: .8rem; font-weight: 700; letter-spacing: .035em; text-decoration: none; transition: color .18s ease; }
+  .dsi-nav-link::after { position: absolute; right: 0; bottom: -1px; left: 0; height: 2px; background: var(--color-primary); content: ""; opacity: 0; transform: scaleX(.45); transition: opacity .18s ease, transform .18s ease; }
+  .dsi-nav-link:hover, .dsi-nav-link.is-active { color: var(--color-ink); }
+  .dsi-nav-link.is-active::after { opacity: 1; transform: scaleX(1); }
+  .dsi-nav-actions { display: flex; align-items: center; gap: .85rem; }
+  .dsi-quote-button { min-height: 2.65rem; align-items: center; justify-content: center; padding: 0 1.1rem; background: var(--color-primary); color: #fff; font-size: .76rem; font-weight: 800; letter-spacing: .025em; text-decoration: none; transition: background .18s ease; }
+  .dsi-quote-button:hover { background: var(--color-primary-dark); }
+  .dsi-menu-toggle { display: inline-flex; height: 2.65rem; width: 2.65rem; align-items: center; justify-content: center; border: 1px solid var(--color-line); border-radius: 999px; background: #fff; }
+  .dsi-mobile-menu { border-top: 1px solid var(--color-line); background: #fff; }
+
+  .dsi-hero { background: var(--color-surface); }
+  .dsi-hero-grid { display: grid; align-items: center; gap: clamp(2rem, 5vw, 4.5rem); padding-block: clamp(2.5rem, 4.6vw, 4.15rem) clamp(2.5rem, 4vw, 3.6rem); }
+  .dsi-hero-copy { min-width: 0; }
+  .dsi-eyebrow { display: inline-flex; align-items: center; gap: .7rem; margin: 0 0 1.4rem; color: var(--color-primary); font-size: .68rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+  .dsi-eyebrow span { display: inline-block; width: 1.9rem; height: 1px; background: currentColor; }
+  .dsi-hero-title { max-width: 11ch; margin: 0; color: var(--color-ink); font-family: var(--font-heading); font-size: clamp(3rem, 5.4vw, 5rem); font-weight: 800; letter-spacing: -.055em; line-height: .96; text-wrap: balance; }
+  .dsi-hero-lede { max-width: 43ch; margin: 1.5rem 0 0; color: var(--color-muted); font-size: clamp(1rem, 1.25vw, 1.125rem); line-height: 1.65; }
+  .dsi-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.4rem 1.6rem; margin-top: 1.85rem; }
+  .dsi-button-primary { gap: .7rem; min-height: 3.1rem; border-radius: 1px; padding-inline: 1.35rem; font-size: .82rem; font-weight: 800; letter-spacing: .015em; }
+  .dsi-sales-link { color: var(--color-ink); font-size: .82rem; font-weight: 800; text-decoration: underline; text-decoration-color: rgba(23, 27, 26, .28); text-underline-offset: .35em; }
+  .dsi-sales-link:hover { color: var(--color-primary); }
+  .dsi-hero-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; max-width: 35rem; margin: 2.35rem 0 0; padding-top: 1.15rem; border-top: 1px solid var(--color-line); }
+  .dsi-hero-facts div { min-width: 0; }
+  .dsi-hero-facts dt { color: var(--color-muted); font-size: .61rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+  .dsi-hero-facts dd { margin: .3rem 0 0; color: var(--color-ink); font-size: .96rem; font-weight: 800; letter-spacing: -.015em; }
+
+  .dsi-hero-media { position: relative; min-width: 0; margin: 0; overflow: hidden; aspect-ratio: 3840 / 3308; background: var(--color-photo); }
+  .dsi-hero-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .dsi-hero-media-empty { width: 100%; height: 100%; background: var(--color-photo); }
+  .dsi-hero-caption { position: absolute; right: 0; bottom: 0; left: 0; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: .9rem 1.15rem; background: rgba(23, 27, 26, .94); color: #fff; }
+  .dsi-hero-series { font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .dsi-hero-models { color: rgba(255, 255, 255, .66); font-size: .7rem; font-weight: 600; letter-spacing: .04em; }
+  .dsi-hero-tag { position: absolute; top: .9rem; left: .9rem; padding: .42rem .55rem; background: #fff; color: var(--color-ink); font-size: .58rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+
+  .dsi-hero-foot { border-top: 1px solid var(--color-line); background: #efeee9; }
+  .dsi-hero-foot-inner { display: flex; min-height: 3.5rem; align-items: center; gap: 1.35rem; }
+  .dsi-hero-foot-label { margin: 0; color: var(--color-primary); font-size: .62rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+  .dsi-hero-foot-list { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem 1.3rem; margin: 0; padding: 0; list-style: none; color: var(--color-ink); font-size: .78rem; font-weight: 700; }
+  .dsi-hero-foot-list li { display: inline-flex; align-items: center; gap: 1.3rem; }
+  .dsi-hero-foot-list li + li::before { width: 1px; height: .8rem; background: var(--color-line); content: ""; }
+  .dsi-hero-origin { margin: 0 0 0 auto; color: var(--color-muted); font-size: .68rem; letter-spacing: .02em; }
+
+  @media (min-width: 56rem) {
+    .dsi-hero-grid { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); }
+  }
+
+  @media (min-width: 44rem) {
+    .forge-product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .forge-lineup ul { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  }
+  @media (min-width: 58rem) {
+    .forge-hero-with-image { grid-template-columns: minmax(0,1fr) minmax(0,1.42fr); }
+    .forge-detail-with-image { grid-template-columns: minmax(0,1.35fr) minmax(0,1fr); }
+    .forge-detail-with-image .forge-detail-title { grid-column: 2; grid-row: 1; }
+    .forge-detail-with-image .forge-gallery { grid-column: 1; grid-row: 1; }
+    .forge-detail-information:has(> :nth-child(2)) { grid-template-columns: minmax(0,1fr) minmax(0,1.35fr); }
+    .forge-product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 55.99rem) {
+    .dsi-hero-grid { grid-template-columns: 1fr; }
+    .dsi-hero-title { max-width: 16ch; }
+    .dsi-hero-media { max-width: 46rem; }
+    .dsi-hero-origin { width: 100%; margin-left: 0; }
+    .dsi-hero-foot-inner { flex-wrap: wrap; padding-block: .8rem; }
+  }
+
+  @media (max-width: 40rem) {
+    .dsi-topbar-inner { min-height: 2.35rem; font-size: .59rem; }
+    .dsi-topbar-contact span { display: none; }
+    .dsi-navbar-inner { min-height: 4.35rem; }
+    .dsi-hero-title { font-size: clamp(2.65rem, 12.4vw, 3.6rem); }
+    .dsi-hero-facts { gap: .65rem; }
+    .dsi-hero-facts dd { font-size: .82rem; }
+    .dsi-hero-caption { padding: .75rem .85rem; }
+    .dsi-hero-models { display: none; }
+  }
+}

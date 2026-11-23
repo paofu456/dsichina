@@ -1,0 +1,13 @@
+---
+import ContactCta from "../components/sections/ContactCta.astro";
+import FeaturedProducts from "../components/sections/FeaturedProducts.astro";
+import Hero from "../components/sections/Hero.astro";
+import company from "../data/company.json";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { makePageTitle } from "../lib/seo";
+---
+<BaseLayout title={makePageTitle()} description={company.description}>
+  <Hero />
+  <FeaturedProducts />
+  <ContactCta />
+</BaseLayout>

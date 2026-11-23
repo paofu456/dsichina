@@ -1,0 +1,20 @@
+---
+import company from "../../data/company.json";
+import Container from "../ui/Container.astro";
+
+const { name, phone, email, address, location } = company;
+const dial = phone.replace(/[^\d+]/g, "");
+---
+<footer id="contact" class="forge-footer">
+  <Container class="forge-footer-layout">
+    <div>
+      <h2>Contact {company.shortName || name}</h2>
+      {dial && <a href={`tel:${dial}`}>{phone}</a>}
+      {email && <a href={`mailto:${email}`}>{email}</a>}
+    </div>
+    <address>
+      <span>{name}</span>
+      {(address || location) && <span>{address || location}</span>}
+    </address>
+  </Container>
+</footer>

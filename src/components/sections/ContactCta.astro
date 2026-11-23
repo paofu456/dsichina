@@ -1,0 +1,11 @@
+---
+import { siteConfig } from "../../../site.config";
+import Container from "../ui/Container.astro";
+import Button from "../ui/Button.astro";
+---
+<section class="forge-contact">
+  <Container class="forge-contact-layout">
+    <h2 class="forge-heading">Discuss your requirements</h2>
+    <Button href={siteConfig.sampleDetailSlug ? "#contact" : "/contact/"} variant="secondary">Contact us</Button>
+  </Container>
+</section>

@@ -1,0 +1,54 @@
+---
+import { render, type CollectionEntry } from "astro:content";
+import ProductGallery from "../../components/product/ProductGallery.astro";
+import ProductSpecs from "../../components/product/ProductSpecs.astro";
+import Button from "../../components/ui/Button.astro";
+import Container from "../../components/ui/Container.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPublishedProducts } from "../../lib/products";
+import { siteConfig } from "../../../site.config";
+
+export async function getStaticPaths() {
+  return (await getPublishedProducts())
+    .filter(({ data }) => !siteConfig.sampleDetailSlug || data.slug === siteConfig.sampleDetailSlug)
+    .map((product) => ({ params: { slug: product.data.slug }, props: { product } }));
+}
+interface Props {
+  product: CollectionEntry<"products">;
+}
+const { product } = Astro.props;
+const { data } = product;
+const { Content } = await render(product);
+const contact = siteConfig.sampleDetailSlug ? "#contact" : "/contact/";
+---
+<BaseLayout title={data.seo.title} description={data.seo.description} image={data.images[0]?.src}>
+  <Container class="forge-detail">
+    <a href="/products/" class="forge-text-link">All products</a>
+    <section class:list={["forge-detail-top", data.images.length > 0 && "forge-detail-with-image"]}>
+      <div class="forge-detail-title">
+        <h1 class="forge-title">{data.title}</h1>
+        <p class="forge-intro">{data.summary}</p>
+        <Button href={data.specifications.length ? "#specifications" : contact}>
+          {data.specifications.length ? "See specifications" : "Contact us"}
+        </Button>
+      </div>
+      {data.images.length > 0 && <ProductGallery images={data.images} />}
+    </section>
+    {(data.models.length > 0 || product.body?.trim() || data.specifications.length > 0) && (
+      <section class="forge-detail-information">
+        {(data.models.length > 0 || product.body?.trim()) && (
+          <div>
+            {data.models.length > 0 && (
+              <div class="forge-models">
+                <h2 class="forge-heading">Models</h2>
+                <ul>{data.models.map((model) => <li>{model}</li>)}</ul>
+              </div>
+            )}
+            {product.body?.trim() && <article class="prose-site"><Content /></article>}
+          </div>
+        )}
+        <ProductSpecs specifications={data.specifications} title={data.models.length > 1 ? "Series specifications" : "Specifications"} />
+      </section>
+    )}
+  </Container>
+</BaseLayout>

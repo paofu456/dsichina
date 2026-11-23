@@ -1,0 +1,18 @@
+---
+import { getPublishedProducts } from "../../lib/products";
+import Container from "../ui/Container.astro";
+
+const products = await getPublishedProducts();
+const entries = products.filter(({ data }) => data.featured);
+const featured = (entries.length ? entries : products).slice(0, 3);
+---
+{featured.length > 0 && (
+  <section>
+    <Container class="forge-lineup">
+      <h2 class="forge-heading">Product lineup</h2>
+      <ul>
+        {featured.map(({ data }) => <li><a href={`/products/#${data.slug}`}>{data.title}</a></li>)}
+      </ul>
+    </Container>
+  </section>
+)}

@@ -1,0 +1,22 @@
+---
+interface Specification {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  specifications: Specification[];
+  title?: string;
+}
+const { specifications, title = "Specifications" } = Astro.props;
+---
+{specifications.length > 0 && (
+  <div id="specifications" class="forge-specifications">
+    <h2 class="forge-heading">{title}</h2>
+    <dl>
+      {specifications.map(({ label, value }) => (
+        <div><dt>{label}</dt><dd>{value}</dd></div>
+      ))}
+    </dl>
+  </div>
+)}
